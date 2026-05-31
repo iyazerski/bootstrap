@@ -1,0 +1,57 @@
+# homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+HOMEBREW_PREFIX="$(brew --prefix)"
+
+# Local binaries
+export PATH="$HOME/.local/bin:$PATH"
+
+# De-duplicate PATH
+typeset -U path PATH
+
+# zsh completions
+zmodload -i zsh/complist
+autoload -Uz compinit
+compinit -d "$HOME/.zsh/cache/zcompdump" -C -i
+
+# starship prompt
+eval "$(starship init zsh)"
+
+# aliases
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi
+
+# Python debug
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# uv
+command -v uv >/dev/null 2>&1 && eval "$(uv generate-shell-completion zsh)"
+
+# cargo
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# history
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt SHARE_HISTORY INC_APPEND_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_REDUCE_BLANKS HIST_VERIFY
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
+# zsh-autosuggestions
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# completion cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.zsh/cache"
+
+# postgres
+export PATH="$HOMEBREW_PREFIX/opt/postgresql@17/bin:$PATH"
+export LDFLAGS="-L$HOMEBREW_PREFIX/opt/postgresql@17/lib"
+export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/postgresql@17/include"
+
+source "$HOME/.secrets"

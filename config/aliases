@@ -1,0 +1,13 @@
+# docker
+alias dockerps='docker ps -a --format "table {{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dockerlogs="docker logs -f --tail 50"
+
+# utils
+alias remotecp="rsync -chavzP --stats --delete"
+alias untar="tar xvf"
+alias compress="7z a -tzip -p -mem=AES256"
+
+# ls replacements
+alias ls='eza --icons --group-directories-first'
+alias ll='eza -lah --icons --group-directories-first'
+alias la='eza -a --icons'

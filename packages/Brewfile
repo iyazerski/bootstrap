@@ -1,0 +1,61 @@
+tap "tw93/tap" if OS.mac?
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Container runtimes on MacOS (and Linux) with minimal setup
+brew "colima"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Isolated development environments using Docker
+brew "docker-compose"
+# Modern, maintained replacement for ls
+brew "eza"
+# GitHub command-line tool
+brew "gh"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
+# Distributed revision control system
+brew "git"
+# Improved top (interactive process viewer)
+brew "htop"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# LLVM's OpenMP runtime library
+brew "libomp"
+# Next-gen compiler infrastructure
+brew "llvm"
+# Terminal-based visual file manager
+brew "midnight-commander"
+# Lightweight cloud messaging system
+brew "nats-server"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node@24", link: true
+# Manage multiple Node.js versions
+brew "nvm"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
+# Object-relational database system
+brew "postgresql@17", restart_service: :changed, link: true if OS.mac?
+# Object-relational database system
+brew "postgresql@17", link: true if OS.linux?
+# Cross-shell prompt for astronauts
+brew "starship"
+# UNIX shell (command interpreter)
+brew "zsh"
+# Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-autosuggestions"
+# Fish shell like syntax highlighting for zsh
+brew "zsh-syntax-highlighting"
+# Comprehensive macOS cleanup and application uninstall tool
+brew "tw93/tap/mole" if OS.mac?
+# OpenAI's coding agent that runs in your terminal
+cask "codex" if OS.mac?
+cask "font-jetbrains-mono-nerd-font" if OS.mac?
+# Cross-platform Git credential storage for multiple hosting providers
+cask "git-credential-manager" if OS.mac?
+uv "ipython"
+uv "pre-commit"
+uv "ruff"
+uv "ty"
+npm "@mermaid-js/mermaid-cli"
+npm "@playwright/cli"
+npm "corepack"
