@@ -10,7 +10,7 @@ Run from this repository:
 ./bootstrap.sh
 ```
 
-It is safe to run repeatedly. The script installs or adds what is missing and keeps existing local extras, including extra Homebrew packages.
+It is safe to run repeatedly. The script installs or adds what is missing and keeps existing local extras, including extra Homebrew packages. The Starship config is replaced with this repository's version on each run.
 
 The script may ask for your password when macOS or Ubuntu needs administrator access, for example to change the default shell.
 
@@ -18,6 +18,7 @@ The script may ask for your password when macOS or Ubuntu needs administrator ac
 
 - Installs Homebrew on macOS and Ubuntu WSL.
 - Installs packages from `packages/Brewfile`.
+- Installs global npm packages from `packages/Brewfile.npm` after `zsh` is configured.
 - Installs Ubuntu WSL prerequisites from `packages/ubuntu-apt.txt`.
 - Installs `uv` with Astral's official installer.
 - Installs Python 3.14 with `uv`.
@@ -27,4 +28,4 @@ The script may ask for your password when macOS or Ubuntu needs administrator ac
   - `~/.zshrc`
   - `~/.gitconfig`
   - `~/.aliases`
-  - `~/.config/starship.toml`
+- Overwrites `~/.config/starship.toml` with `config/starship.toml`.

@@ -17,6 +17,11 @@ bootstrap_macos() {
   log_header "Reconciling macOS config files"
   ensure_macos_configs
 
+  log_header "Installing Node dependencies"
+  ensure_configured_zsh_command_available node
+  ensure_configured_zsh_command_available npm
+  run_brew_bundle_file_with_configured_zsh "$BOOTSTRAP_DIR/packages/Brewfile.npm"
+
   log_header "Configuring Git credentials"
   ensure_git_credential_manager_configured
 }

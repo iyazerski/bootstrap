@@ -109,11 +109,27 @@ ensure_config_lines() {
   esac
 }
 
+overwrite_config_file() {
+  local source_file
+  local target_file
+  local target_dir
+
+  source_file="$1"
+  target_file="$2"
+
+  [ -f "$source_file" ] || die "Missing config source: $source_file"
+
+  target_dir="$(dirname "$target_file")"
+  mkdir -p "$target_dir"
+  cp "$source_file" "$target_file"
+  log_change "Overwrote $target_file with $source_file"
+}
+
 ensure_common_configs() {
   log_header "Reconciling config files"
   ensure_zsh_support_paths
   ensure_config_lines "$BOOTSTRAP_DIR/config/aliases" "$HOME/.aliases"
-  ensure_config_lines "$BOOTSTRAP_DIR/config/starship.toml" "$HOME/.config/starship.toml"
+  overwrite_config_file "$BOOTSTRAP_DIR/config/starship.toml" "$HOME/.config/starship.toml"
   ensure_config_lines "$BOOTSTRAP_DIR/config/gitconfig" "$HOME/.gitconfig"
 }
 

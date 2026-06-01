@@ -145,6 +145,34 @@ run_brew_bundle_file() {
   brew bundle install --file="$brewfile"
 }
 
+run_brew_bundle_file_with_configured_zsh() {
+  local brewfile
+
+  brewfile="$1"
+
+  [ -f "$brewfile" ] || die "Missing Brewfile: $brewfile"
+
+  ensure_configured_zsh_command_available brew
+
+  if zsh -ic 'brew bundle check --file="$1" >/dev/null' bootstrap-brew-bundle "$brewfile"; then
+    log_ok "Homebrew bundle is satisfied: $brewfile"
+    return
+  fi
+
+  log_change "Installing Homebrew bundle: $brewfile"
+  zsh -ic 'brew bundle install --file="$1"' bootstrap-brew-bundle "$brewfile"
+}
+
+ensure_configured_zsh_command_available() {
+  local command_name
+
+  command_name="$1"
+
+  ensure_command_available zsh
+
+  zsh -ic 'command -v "$1" >/dev/null' bootstrap-zsh-command "$command_name" || die "$command_name is missing after zsh config. Check $HOME/.zshrc."
+}
+
 ensure_command_available() {
   command -v "$1" >/dev/null 2>&1 || die "$1 is missing after package installation. Add it to the platform package manifest."
 }
