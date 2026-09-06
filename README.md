@@ -10,7 +10,7 @@ Run from this repository:
 ./bootstrap.sh
 ```
 
-It is safe to run repeatedly. The script installs or adds what is missing and keeps existing local extras, including extra Homebrew packages. The Starship config is replaced with this repository's version on each run.
+It is safe to run repeatedly. The script installs or adds what is missing and keeps existing local extras, including extra Homebrew packages. The Starship config is kept in sync with this repository's version.
 
 The script may ask for your password when macOS or Ubuntu needs administrator access, for example to change the default shell.
 
@@ -28,4 +28,5 @@ The script may ask for your password when macOS or Ubuntu needs administrator ac
   - `~/.zshrc`
   - `~/.gitconfig`
   - `~/.aliases`
-- Overwrites `~/.config/starship.toml` with `config/starship.toml`.
+  - `~/.config/git/ignore`
+- Replaces `~/.config/starship.toml` with `config/starship.toml` when changed.

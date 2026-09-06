@@ -1,22 +1,36 @@
+tap "atlassian/acli"
+tap "estuary/flowctl"
 tap "tw93/tap" if OS.mac?
+# GitOps Continuous Delivery for Kubernetes
+brew "argocd"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Official command-line tool for CircleCI
+brew "circleci"
 # Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
+# Docker CLI plugin for extended build capabilities with BuildKit
+brew "docker-buildx"
 # Isolated development environments using Docker
 brew "docker-compose"
 # Modern, maintained replacement for ls
 brew "eza"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
 # GitHub command-line tool
 brew "gh"
 # Interpreter for PostScript and PDF
 brew "ghostscript"
 # Distributed revision control system
 brew "git"
+# Task is a task runner/build tool that aims to be simpler and easier to use
+brew "go-task"
 # Improved top (interactive process viewer)
 brew "htop"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
 # LLVM's OpenMP runtime library
@@ -33,12 +47,20 @@ brew "node@24", link: true
 brew "nvm"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
 # Object-relational database system
 brew "postgresql@17", restart_service: :changed, link: true if OS.mac?
 # Object-relational database system
 brew "postgresql@17", link: true if OS.linux?
+# Tools for and transforming and inspecting PDF files
+brew "qpdf"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Fish-like fast/unobtrusive autosuggestions for zsh
@@ -47,12 +69,22 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 # Comprehensive macOS cleanup and application uninstall tool
 brew "tw93/tap/mole" if OS.mac?
+# Software to interact with Atlassian Cloud from the terminal
+brew "atlassian/acli/acli"
+# Command line interface for Flow
+brew "estuary/flowctl/flowctl"
+# Android SDK component
+cask "android-platform-tools" if OS.mac?
 # OpenAI's coding agent that runs in your terminal
 cask "codex" if OS.mac?
 cask "font-jetbrains-mono-nerd-font" if OS.mac?
 # Cross-platform Git credential storage for multiple hosting providers
 cask "git-credential-manager" if OS.mac?
+cargo "lspyx", source: "https://github.com/iyazerski/lspyx.git"
+uv "debugpy"
 uv "ipython"
 uv "pre-commit"
 uv "ruff"
+uv "snowflake-cli"
+uv "trafilatura"
 uv "ty"

@@ -17,6 +17,7 @@ ensure_config_lines() {
   touch "$target_file"
 
   temp_file="$(mktemp "${target_file}.tmp.XXXXXX")"
+  trap 'rm -f "$temp_file"' RETURN
 
   if awk '
     NR == FNR {
@@ -119,6 +120,11 @@ overwrite_config_file() {
 
   [ -f "$source_file" ] || die "Missing config source: $source_file"
 
+  if [ -f "$target_file" ] && cmp -s "$source_file" "$target_file"; then
+    log_ok "$target_file is up to date."
+    return
+  fi
+
   target_dir="$(dirname "$target_file")"
   mkdir -p "$target_dir"
   cp "$source_file" "$target_file"
@@ -131,6 +137,7 @@ ensure_common_configs() {
   ensure_config_lines "$BOOTSTRAP_DIR/config/aliases" "$HOME/.aliases"
   overwrite_config_file "$BOOTSTRAP_DIR/config/starship.toml" "$HOME/.config/starship.toml"
   ensure_config_lines "$BOOTSTRAP_DIR/config/gitconfig" "$HOME/.gitconfig"
+  ensure_config_lines "$BOOTSTRAP_DIR/config/ignore" "$HOME/.config/git/ignore"
 }
 
 ensure_macos_configs() {
