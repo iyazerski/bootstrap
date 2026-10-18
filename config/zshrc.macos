@@ -2,6 +2,9 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 HOMEBREW_PREFIX="$(brew --prefix)"
 
+# fnm (Node version manager), switches version on cd via .nvmrc/.node-version
+eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
+
 # Local binaries
 export PATH="$HOME/.local/bin:$PATH"
 

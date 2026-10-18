@@ -8,6 +8,7 @@ bootstrap_macos() {
 
   log_header "Installing runtimes"
   ensure_python_314
+  ensure_node_lts
 
   log_header "Configuring shell"
   ensure_macos_zsh_default

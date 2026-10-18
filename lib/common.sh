@@ -83,6 +83,20 @@ ensure_python_314() {
   uv python find 3.14 >/dev/null
 }
 
+# fnm comes from the Brewfile. Its default version is the one login shells, GUI apps, and global npm packages use.
+ensure_node_lts() {
+  ensure_command_available fnm
+
+  if fnm exec --using=default node --version >/dev/null 2>&1; then
+    log_ok "Node.js is available through fnm."
+    return
+  fi
+
+  log_change "Installing the latest Node.js LTS through fnm."
+  fnm install --lts
+  fnm default lts-latest
+}
+
 ensure_uv() {
   if command -v uv >/dev/null 2>&1; then
     log_ok "uv is installed."

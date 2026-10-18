@@ -1,4 +1,1 @@
 npm "@mermaid-js/mermaid-cli"
-npm "@playwright/cli"
-npm "corepack"
-npm "npm-check-updates"

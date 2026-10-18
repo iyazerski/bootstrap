@@ -22,10 +22,12 @@ The script may ask for your password when macOS or Ubuntu needs administrator ac
 - Installs Ubuntu WSL prerequisites from `packages/ubuntu-apt.txt`.
 - Installs `uv` with Astral's official installer.
 - Installs Python 3.14 with `uv`.
+- Installs the latest Node.js LTS with `fnm` and makes it the default version.
 - Configures Git Credential Manager.
 - Sets Homebrew `zsh` as the default shell.
 - Adds missing lines from `config/` files into local config files:
   - `~/.zshrc`
+  - `~/.zprofile`
   - `~/.gitconfig`
   - `~/.aliases`
   - `~/.config/git/ignore`

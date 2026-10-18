@@ -14,3 +14,6 @@
 	autoSetupRemote = true
 [init]
 	defaultBranch = main
+# GCM keeps several GitHub accounts: name the default one so it never asks.
+[credential "https://github.com"]
+	username = iyazerski

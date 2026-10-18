@@ -17,7 +17,8 @@ ensure_config_lines() {
   touch "$target_file"
 
   temp_file="$(mktemp "${target_file}.tmp.XXXXXX")"
-  trap 'rm -f "$temp_file"' RETURN
+  # A RETURN trap stays set after this function returns, so clear it once it runs: the caller has no temp_file.
+  trap 'rm -f "$temp_file"; trap - RETURN' RETURN
 
   if awk '
     NR == FNR {
@@ -134,6 +135,7 @@ overwrite_config_file() {
 ensure_common_configs() {
   log_header "Reconciling config files"
   ensure_zsh_support_paths
+  ensure_config_lines "$BOOTSTRAP_DIR/config/zprofile" "$HOME/.zprofile"
   ensure_config_lines "$BOOTSTRAP_DIR/config/aliases" "$HOME/.aliases"
   overwrite_config_file "$BOOTSTRAP_DIR/config/starship.toml" "$HOME/.config/starship.toml"
   ensure_config_lines "$BOOTSTRAP_DIR/config/gitconfig" "$HOME/.gitconfig"

@@ -1,8 +1,6 @@
-tap "atlassian/acli"
-tap "estuary/flowctl"
-tap "tw93/tap" if OS.mac?
-# GitOps Continuous Delivery for Kubernetes
-brew "argocd"
+tap "mekedron/tap", trusted: true if OS.mac?
+# Official Amazon AWS command-line interface
+brew "awscli"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Official command-line tool for CircleCI
@@ -19,6 +17,8 @@ brew "docker-compose"
 brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Fast and simple Node.js version manager
+brew "fnm"
 # GitHub command-line tool
 brew "gh"
 # Interpreter for PostScript and PDF
@@ -39,12 +39,10 @@ brew "libomp"
 brew "llvm"
 # Terminal-based visual file manager
 brew "midnight-commander"
+# Deep clean and optimize your Mac
+brew "mole" if OS.mac?
 # Lightweight cloud messaging system
 brew "nats-server"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node@24", link: true
-# Manage multiple Node.js versions
-brew "nvm"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # PDF rendering library (based on the xpdf-3.0 code base)
@@ -67,16 +65,10 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# Comprehensive macOS cleanup and application uninstall tool
-brew "tw93/tap/mole" if OS.mac?
-# Software to interact with Atlassian Cloud from the terminal
-brew "atlassian/acli/acli"
-# Command line interface for Flow
-brew "estuary/flowctl/flowctl"
 # Android SDK component
 cask "android-platform-tools" if OS.mac?
-# OpenAI's coding agent that runs in your terminal
-cask "codex" if OS.mac?
+# Keyboard-first AI text pipeline for macOS
+cask "mekedron/tap/clipslop" if OS.mac?
 cask "font-jetbrains-mono-nerd-font" if OS.mac?
 # Cross-platform Git credential storage for multiple hosting providers
 cask "git-credential-manager" if OS.mac?
