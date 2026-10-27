@@ -4,11 +4,15 @@ Personal machine bootstrap for macOS and Ubuntu WSL.
 
 ## Usage
 
-Run from this repository:
+Run on any macOS or Ubuntu WSL machine:
 
 ```sh
-./bootstrap.sh
+curl -fsSL https://raw.githubusercontent.com/iyazerski/bootstrap/main/install.sh | sh
 ```
+
+It needs only `curl`, `tar`, and `bash`. It downloads this repository's `main` branch to a temporary folder, runs `bootstrap.sh` from there, and then deletes the folder.
+
+From a checkout of this repository, run `./bootstrap.sh` instead.
 
 It is safe to run repeatedly. The script installs or adds what is missing and keeps existing local extras, including extra Homebrew packages. The Starship config is kept in sync with this repository's version.
 
