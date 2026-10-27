@@ -10,6 +10,7 @@ bootstrap_ubuntu_wsl() {
   log_header "Installing Homebrew packages"
   ensure_homebrew
   ensure_uv
+  ensure_rustup
   run_brew_bundle_file "$BOOTSTRAP_DIR/packages/Brewfile"
   ensure_ubuntu_git_credential_manager
 

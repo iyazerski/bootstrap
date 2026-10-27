@@ -157,6 +157,26 @@ ensure_pi_setup() {
   curl -fsSL https://raw.githubusercontent.com/iyazerski/pi-setup/main/scripts/setup.sh | sh
 }
 
+# Install rustup before the Brewfile: its cargo entries otherwise make brew bundle install Homebrew's rust formula.
+ensure_rustup() {
+  if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+  fi
+
+  if command -v rustup >/dev/null 2>&1; then
+    log_ok "rustup is installed."
+    return
+  fi
+
+  require_command curl
+
+  log_change "Installing rustup with the official installer."
+  # The zsh config already sources ~/.cargo/env, so the installer must not edit shell files.
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+  . "$HOME/.cargo/env"
+  ensure_command_available cargo
+}
+
 ensure_uv() {
   if command -v uv >/dev/null 2>&1; then
     log_ok "uv is installed."

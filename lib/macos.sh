@@ -4,6 +4,7 @@ bootstrap_macos() {
   log_header "Installing macOS packages"
   ensure_homebrew
   ensure_uv
+  ensure_rustup
   run_brew_bundle_file "$BOOTSTRAP_DIR/packages/Brewfile"
 
   log_header "Installing runtimes"

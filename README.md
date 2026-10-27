@@ -21,6 +21,7 @@ The script may ask for your password when macOS or Ubuntu needs administrator ac
 - Installs Ubuntu WSL prerequisites from `packages/ubuntu-apt.txt`.
 - Installs `uv` with Astral's official installer.
 - Installs Python 3.14 with `uv`.
+- Installs Rust with `rustup`'s official installer, before the Brewfile, so its `cargo` packages don't pull in Homebrew's `rust`.
 - Installs Bun with its official installer into `~/.bun`, with zsh completions.
 - Installs global Bun packages from `packages/bun-global.txt`.
 - Sets up pi with [pi-setup](https://github.com/iyazerski/pi-setup): Pi-Bolt, pi packages, and MCP tools.
