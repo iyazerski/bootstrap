@@ -5,3 +5,4 @@ file
 git
 jq
 procps
+unzip

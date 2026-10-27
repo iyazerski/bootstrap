@@ -15,7 +15,7 @@ bootstrap_ubuntu_wsl() {
 
   log_header "Installing runtimes"
   ensure_python_314
-  ensure_node_lts
+  ensure_bun
 
   log_header "Configuring shell"
   ensure_ubuntu_zsh_default
@@ -25,10 +25,8 @@ bootstrap_ubuntu_wsl() {
   log_header "Reconciling Ubuntu WSL config files"
   ensure_ubuntu_wsl_configs
 
-  log_header "Installing Node dependencies"
-  ensure_configured_zsh_command_available node
-  ensure_configured_zsh_command_available npm
-  run_brew_bundle_file_with_configured_zsh "$BOOTSTRAP_DIR/packages/Brewfile.npm"
+  log_header "Installing global Bun packages"
+  ensure_bun_global_packages
 
   log_header "Configuring Git credentials"
   ensure_git_credential_manager_configured

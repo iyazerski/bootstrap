@@ -2,9 +2,6 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 HOMEBREW_PREFIX="$(brew --prefix)"
 
-# fnm (Node version manager), switches version on cd via .nvmrc/.node-version
-eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
-
 # Local binaries
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -33,6 +30,11 @@ command -v uv >/dev/null 2>&1 && eval "$(uv generate-shell-completion zsh)"
 # cargo
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+
 # history
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
@@ -56,5 +58,8 @@ zstyle ':completion:*' cache-path "$HOME/.zsh/cache"
 export PATH="$HOMEBREW_PREFIX/opt/postgresql@17/bin:$PATH"
 export LDFLAGS="-L$HOMEBREW_PREFIX/opt/postgresql@17/lib"
 export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/postgresql@17/include"
+
+# curl (keg-only on macOS)
+export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 
 source "$HOME/.secrets"

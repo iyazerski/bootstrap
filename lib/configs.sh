@@ -135,7 +135,6 @@ overwrite_config_file() {
 ensure_common_configs() {
   log_header "Reconciling config files"
   ensure_zsh_support_paths
-  ensure_config_lines "$BOOTSTRAP_DIR/config/zprofile" "$HOME/.zprofile"
   ensure_config_lines "$BOOTSTRAP_DIR/config/aliases" "$HOME/.aliases"
   overwrite_config_file "$BOOTSTRAP_DIR/config/starship.toml" "$HOME/.config/starship.toml"
   ensure_config_lines "$BOOTSTRAP_DIR/config/gitconfig" "$HOME/.gitconfig"

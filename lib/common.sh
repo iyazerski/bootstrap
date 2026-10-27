@@ -83,18 +83,67 @@ ensure_python_314() {
   uv python find 3.14 >/dev/null
 }
 
-# fnm comes from the Brewfile. Its default version is the one login shells, GUI apps, and global npm packages use.
-ensure_node_lts() {
-  ensure_command_available fnm
+# Bun lives in ~/.bun, where its installer and `bun upgrade` expect it. The zsh config adds it to PATH.
+ensure_bun() {
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
 
-  if fnm exec --using=default node --version >/dev/null 2>&1; then
-    log_ok "Node.js is available through fnm."
+  if command -v bun >/dev/null 2>&1; then
+    log_ok "Bun is installed."
+  else
+    require_command curl
+    require_command unzip
+
+    log_change "Installing Bun with the official installer."
+    # A non-zsh SHELL stops the installer from appending its own lines to ~/.zshrc: config/zshrc.* covers them.
+    curl -fsSL https://bun.sh/install | SHELL=/bin/sh bash
+    ensure_command_available bun
+  fi
+
+  if [ -s "$BUN_INSTALL/_bun" ]; then
+    log_ok "Bun zsh completions exist."
+  else
+    SHELL=zsh bun completions > "$BUN_INSTALL/_bun"
+    log_change "Created $BUN_INSTALL/_bun"
+  fi
+}
+
+ensure_bun_global_packages() {
+  local package
+  local package_file
+  local global_manifest
+  local missing_packages
+
+  ensure_command_available bun
+  ensure_command_available jq
+
+  package_file="$BOOTSTRAP_DIR/packages/bun-global.txt"
+  [ -f "$package_file" ] || die "Missing package list: $package_file"
+
+  global_manifest="$BUN_INSTALL/install/global/package.json"
+  missing_packages=()
+
+  while IFS= read -r package || [ -n "$package" ]; do
+    case "$package" in
+      ''|\#*)
+        continue
+        ;;
+    esac
+
+    if [ -f "$global_manifest" ] && jq -e --arg package "$package" '.dependencies[$package]' "$global_manifest" >/dev/null; then
+      log_ok "Global Bun package is installed: $package"
+    else
+      missing_packages+=("$package")
+    fi
+  done < "$package_file"
+
+  if [ "${#missing_packages[@]}" -eq 0 ]; then
+    log_ok "Global Bun packages are installed."
     return
   fi
 
-  log_change "Installing the latest Node.js LTS through fnm."
-  fnm install --lts
-  fnm default lts-latest
+  log_change "Installing global Bun packages: ${missing_packages[*]}"
+  bun add --global "${missing_packages[@]}"
 }
 
 ensure_uv() {
@@ -157,34 +206,6 @@ run_brew_bundle_file() {
 
   log_change "Installing Homebrew bundle: $brewfile"
   brew bundle install --file="$brewfile"
-}
-
-run_brew_bundle_file_with_configured_zsh() {
-  local brewfile
-
-  brewfile="$1"
-
-  [ -f "$brewfile" ] || die "Missing Brewfile: $brewfile"
-
-  ensure_configured_zsh_command_available brew
-
-  if zsh -ic 'brew bundle check --file="$1" >/dev/null' bootstrap-brew-bundle "$brewfile"; then
-    log_ok "Homebrew bundle is satisfied: $brewfile"
-    return
-  fi
-
-  log_change "Installing Homebrew bundle: $brewfile"
-  zsh -ic 'brew bundle install --file="$1"' bootstrap-brew-bundle "$brewfile"
-}
-
-ensure_configured_zsh_command_available() {
-  local command_name
-
-  command_name="$1"
-
-  ensure_command_available zsh
-
-  zsh -ic 'command -v "$1" >/dev/null' bootstrap-zsh-command "$command_name" || die "$command_name is missing after zsh config. Check $HOME/.zshrc."
 }
 
 ensure_command_available() {

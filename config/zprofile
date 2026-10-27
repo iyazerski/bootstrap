@@ -1,2 +1,0 @@
-# fnm default Node (stable path for login shells and GUI apps)
-export PATH="$HOME/.local/share/fnm/aliases/default/bin:$PATH"

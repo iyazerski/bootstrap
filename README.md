@@ -18,16 +18,15 @@ The script may ask for your password when macOS or Ubuntu needs administrator ac
 
 - Installs Homebrew on macOS and Ubuntu WSL.
 - Installs packages from `packages/Brewfile`.
-- Installs global npm packages from `packages/Brewfile.npm` after `zsh` is configured.
 - Installs Ubuntu WSL prerequisites from `packages/ubuntu-apt.txt`.
 - Installs `uv` with Astral's official installer.
 - Installs Python 3.14 with `uv`.
-- Installs the latest Node.js LTS with `fnm` and makes it the default version.
+- Installs Bun with its official installer into `~/.bun`, with zsh completions.
+- Installs global Bun packages from `packages/bun-global.txt`.
 - Configures Git Credential Manager.
 - Sets Homebrew `zsh` as the default shell.
 - Adds missing lines from `config/` files into local config files:
   - `~/.zshrc`
-  - `~/.zprofile`
   - `~/.gitconfig`
   - `~/.aliases`
   - `~/.config/git/ignore`
