@@ -23,6 +23,7 @@ The script may ask for your password when macOS or Ubuntu needs administrator ac
 - Installs Python 3.14 with `uv`.
 - Installs Bun with its official installer into `~/.bun`, with zsh completions.
 - Installs global Bun packages from `packages/bun-global.txt`.
+- Sets up pi with [pi-setup](https://github.com/iyazerski/pi-setup): Pi-Bolt, pi packages, and MCP tools.
 - Configures Git Credential Manager.
 - Sets Homebrew `zsh` as the default shell.
 - Adds missing lines from `config/` files into local config files:

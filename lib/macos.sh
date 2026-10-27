@@ -21,6 +21,9 @@ bootstrap_macos() {
   log_header "Installing global Bun packages"
   ensure_bun_global_packages
 
+  log_header "Setting up pi"
+  ensure_pi_setup
+
   log_header "Configuring Git credentials"
   ensure_git_credential_manager_configured
 }
