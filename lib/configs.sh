@@ -156,12 +156,4 @@ ensure_zsh_support_paths() {
     mkdir -p "$HOME/.zsh/cache"
     log_change "Created $HOME/.zsh/cache"
   fi
-
-  if [ -f "$HOME/.secrets" ]; then
-    log_ok "$HOME/.secrets exists."
-  else
-    touch "$HOME/.secrets"
-    chmod 600 "$HOME/.secrets"
-    log_change "Created empty $HOME/.secrets"
-  fi
 }

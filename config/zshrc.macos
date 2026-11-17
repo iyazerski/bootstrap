@@ -61,5 +61,3 @@ export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/postgresql@17/include"
 
 # curl (keg-only on macOS)
 export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
-
-source "$HOME/.secrets"

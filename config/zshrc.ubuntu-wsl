@@ -59,5 +59,3 @@ zstyle ':completion:*' cache-path "$HOME/.zsh/cache"
 export PATH="$HOMEBREW_PREFIX/opt/postgresql@17/bin:$PATH"
 export LDFLAGS="-L$HOMEBREW_PREFIX/opt/postgresql@17/lib"
 export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/postgresql@17/include"
-
-source "$HOME/.secrets"
