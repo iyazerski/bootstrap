@@ -1,12 +1,10 @@
-tap "mekedron/tap", trusted: true if OS.mac?
+tap "iyazerski/tap"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Official command-line tool for CircleCI
 brew "circleci"
-# Container runtimes on MacOS (and Linux) with minimal setup
-brew "colima"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Pack, ship and run any application as a lightweight container
@@ -39,6 +37,8 @@ brew "jq"
 brew "kubernetes-cli"
 # LLVM's OpenMP runtime library
 brew "libomp"
+# Agent-friendly Python LSP navigation and diagnostics
+brew "iyazerski/tap/lspyx"
 # Next-gen compiler infrastructure
 brew "llvm"
 # Terminal-based visual file manager
@@ -57,8 +57,6 @@ brew "postgresql@17", restart_service: :changed, link: true if OS.mac?
 brew "postgresql@17", link: true if OS.linux?
 # Fast Git hook manager written in Rust, drop-in alternative to pre-commit
 brew "prek"
-# Tools for and transforming and inspecting PDF files
-brew "qpdf"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Cross-shell prompt for astronauts
@@ -71,14 +69,9 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# Android SDK component
-cask "android-platform-tools" if OS.mac?
-# Keyboard-first AI text pipeline for macOS
-cask "mekedron/tap/clipslop" if OS.mac?
 cask "font-jetbrains-mono-nerd-font" if OS.mac?
 # Cross-platform Git credential storage for multiple hosting providers
 cask "git-credential-manager" if OS.mac?
-cargo "lspyx", source: "https://github.com/iyazerski/lspyx.git"
 cargo "sqlx-cli"
 uv "debugpy"
 uv "ipython"
