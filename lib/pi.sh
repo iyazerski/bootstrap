@@ -9,7 +9,6 @@ PI_LAUNCHER_MARK="# bootstrap's pi launcher: runs pi, installed with Bun, on Bun
 PI_PACKAGES=(
   npm:pi-web-access
   git:github.com/iyazerski/dev-flows-plugin
-  git:github.com/iyazerski/pi-setup
 )
 # The largest context window, in tokens, any model may use, so compaction starts before requests grow past it.
 PI_CONTEXT_WINDOW=250000
