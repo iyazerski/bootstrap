@@ -36,10 +36,6 @@ ensure_pi_configured() {
   cap_pi_context_windows
   ensure_pi_agents_md
   ensure_pi_mcp_server lspyx lspyx mcp serve
-  ensure_pi_mcp_server gopls gopls mcp
-  # gopls watches every file under the working folder, one open file each on macOS, and runs out in big non-Go repos.
-  # Go projects turn it back on in .pi/mcp.json.
-  ensure_json_value "$PI_AGENT_DIR/mcp.json" .mcpServers.gopls.enabled false
 }
 
 # Run pi without project-local files, so a project's settings never leak into the setup.
