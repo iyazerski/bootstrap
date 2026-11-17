@@ -34,7 +34,7 @@ The script may ask for your password when macOS or Ubuntu needs administrator ac
   - Installs the pi packages listed in `lib/pi.sh`, and moves pi-web-access's tools behind codemode.
   - Caps every model's context window at 250k tokens.
   - Links `~/.agents/AGENTS.md` into pi's agent directory.
-  - Adds the `lspyx` and `gopls` MCP servers.
+  - Adds the `lspyx` and `gopls` MCP servers. gopls is off by default. Turn it on in a Go project with `{"mcpServers": {"gopls": {"enabled": true}}}` in `.pi/mcp.json`.
 - Configures Git Credential Manager.
 - Sets Homebrew `zsh` as the default shell.
 - Adds missing lines from `config/` files into local config files:
