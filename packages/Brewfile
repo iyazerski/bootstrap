@@ -25,6 +25,10 @@ brew "gh"
 brew "ghostscript"
 # Distributed revision control system
 brew "git"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Language server for the Go language
+brew "gopls"
 # Task is a task runner/build tool that aims to be simpler and easier to use
 brew "go-task"
 # Improved top (interactive process viewer)

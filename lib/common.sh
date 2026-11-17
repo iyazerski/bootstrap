@@ -146,17 +146,6 @@ ensure_bun_global_packages() {
   bun add --global "${missing_packages[@]}"
 }
 
-# pi-setup's script installs Pi-Bolt, pi packages and MCP tools. It skips what is in place, so it runs every time.
-ensure_pi_setup() {
-  require_command curl
-  ensure_command_available git
-  ensure_command_available jq
-  ensure_command_available bun
-
-  # The script prints its own status, including whether anything changed.
-  curl -fsSL https://raw.githubusercontent.com/iyazerski/pi-setup/main/scripts/setup.sh | sh
-}
-
 # Install rustup before the Brewfile: its cargo entries otherwise make brew bundle install Homebrew's rust formula.
 ensure_rustup() {
   if [ -f "$HOME/.cargo/env" ]; then
