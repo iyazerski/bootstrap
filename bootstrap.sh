@@ -5,6 +5,7 @@ BOOTSTRAP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 . "$BOOTSTRAP_DIR/lib/common.sh"
 . "$BOOTSTRAP_DIR/lib/configs.sh"
+. "$BOOTSTRAP_DIR/lib/pi.sh"
 
 main() {
   if [ "$#" -ne 0 ]; then

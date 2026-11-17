@@ -28,7 +28,13 @@ The script may ask for your password when macOS or Ubuntu needs administrator ac
 - Installs Rust with `rustup`'s official installer, before the Brewfile, so its `cargo` packages don't pull in Homebrew's `rust`.
 - Installs Bun with its official installer into `~/.bun`, with zsh completions.
 - Installs global Bun packages from `packages/bun-global.txt`.
-- Sets up pi with [pi-setup](https://github.com/iyazerski/pi-setup): Pi-Bolt, pi packages, and MCP tools.
+- Sets up [pi](https://pi.dev):
+  - Installs pi with Bun, and writes `~/.local/bin/pi`, a launcher that runs it on Bun, without Node.js.
+  - Makes pi install npm packages with Bun, and keep prompt caches warm between runs.
+  - Installs the pi packages listed in `lib/pi.sh`, and moves pi-web-access's tools behind codemode.
+  - Caps every model's context window at 250k tokens.
+  - Links `~/.agents/AGENTS.md` into pi's agent directory.
+  - Adds the `lspyx` and `gopls` MCP servers.
 - Configures Git Credential Manager.
 - Sets Homebrew `zsh` as the default shell.
 - Adds missing lines from `config/` files into local config files:
