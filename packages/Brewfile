@@ -1,4 +1,4 @@
-tap "iyazerski/tap"
+tap "iyazerski/tap", trusted: true
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Bourne-Again SHell, a UNIX command interpreter
