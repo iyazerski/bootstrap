@@ -35,18 +35,12 @@ brew "htop"
 brew "jq"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
-# LLVM's OpenMP runtime library
-brew "libomp"
 # Agent-friendly Python LSP navigation and diagnostics
 brew "iyazerski/tap/lspyx"
-# Next-gen compiler infrastructure
-brew "llvm"
 # Terminal-based visual file manager
 brew "midnight-commander"
 # Deep clean and optimize your Mac
 brew "mole" if OS.mac?
-# Lightweight cloud messaging system
-brew "nats-server"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # PDF rendering library (based on the xpdf-3.0 code base)
