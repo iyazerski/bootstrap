@@ -11,7 +11,7 @@ PI_PACKAGES=(
   git:github.com/iyazerski/dev-flows-plugin
 )
 # The largest context window, in tokens, any model may use, so compaction starts before requests grow past it.
-PI_CONTEXT_WINDOW=250000
+PI_CONTEXT_WINDOW=300000
 PI_AGENTS_MD="$HOME/.agents/AGENTS.md"
 
 ensure_pi_configured() {

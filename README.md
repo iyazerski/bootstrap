@@ -32,7 +32,7 @@ The script may ask for your password when macOS or Ubuntu needs administrator ac
   - Installs pi with Bun, and writes `~/.local/bin/pi`, a launcher that runs it on Bun, without Node.js.
   - Makes pi install npm packages with Bun, and keep prompt caches warm between runs.
   - Installs the pi packages listed in `lib/pi.sh`, and moves pi-web-access's tools behind codemode.
-  - Caps every model's context window at 250k tokens.
+  - Caps every model's context window at 300k tokens.
   - Links `~/.agents/AGENTS.md` into pi's agent directory.
   - Adds the `lspyx` MCP server.
 - Configures Git Credential Manager.
